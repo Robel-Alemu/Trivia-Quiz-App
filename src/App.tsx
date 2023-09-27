@@ -1,5 +1,11 @@
+import Categories from "./components/Categories";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Categories />
+    </div>
+  );
 }
 
 export default App;
