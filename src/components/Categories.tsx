@@ -3,6 +3,7 @@ import categories from "../utils/categories";
 import CategoryCards from "./CategoryCards";
 import { useState } from "react";
 import useQuestion from "../hooks/useQuestions";
+import Questions from "./Questions";
 
 const Categories = () => {
   const [category, setCategory] = useState<number | null>(null);
@@ -10,11 +11,12 @@ const Categories = () => {
   console.log(data);
   if (data && category) {
     return (
-      <div>
-        {data.map((x) => (
-          <p>{x.category}</p>
-        ))}
-      </div>
+      // <div>
+      //   {data.map((x) => (
+      //     <p>{x.category}</p>
+      //   ))}
+      // </div>
+      <Questions data={data} />
     );
   }
   return (
