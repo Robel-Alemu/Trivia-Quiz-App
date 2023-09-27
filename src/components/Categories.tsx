@@ -1,8 +1,22 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import categories from "../utils/categories";
 import CategoryCards from "./CategoryCards";
+import { useState } from "react";
+import useQuestion from "../hooks/useQuestions";
 
 const Categories = () => {
+  const [category, setCategory] = useState<number | null>(null);
+  const { data } = useQuestion(category);
+  console.log(data);
+  if (data && category) {
+    return (
+      <div>
+        {data.map((x) => (
+          <p>{x.category}</p>
+        ))}
+      </div>
+    );
+  }
   return (
     <>
       <SimpleGrid
@@ -12,7 +26,11 @@ const Categories = () => {
       >
         {" "}
         {categories.map((category) => (
-          <CategoryCards categories={category} />
+          <CategoryCards
+            key={category.id}
+            onSeletCategory={(category) => setCategory(category)}
+            categories={category}
+          />
         ))}
       </SimpleGrid>
     </>
