@@ -7,14 +7,20 @@ interface Props {
   data: Question[];
 }
 const Questions = ({ data }: Props) => {
-  let [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState(getChoices(data[currentQuestion]));
   const [end, setEnd] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const answerHandler = () => {
+  const answerHandler = (answer: string) => {
     if (currentQuestion < 9) {
+      if (answer === question.correct_answer) {
+        setScore(score + 1);
+      }
       setCurrentQuestion(currentQuestion + 1);
+
       console.log(currentQuestion);
+      console.log(answer);
     } else {
       setEnd(true);
     }
@@ -24,7 +30,7 @@ const Questions = ({ data }: Props) => {
     if (currentQuestion < 10) setQuestion(getChoices(data[currentQuestion]));
   }, [currentQuestion]);
 
-  if (end) return <div>end</div>;
+  if (end) return <div>{score}</div>;
   return (
     <>
       <VStack marginY="100">
@@ -34,10 +40,13 @@ const Questions = ({ data }: Props) => {
         <SimpleGrid columns={2} spacing={10} justifyContent="space-around">
           {question.answers.map((answer) => (
             <Button
-              onClick={answerHandler}
+              // ref={answerRef}
+              onClick={() => answerHandler(answer)}
               fontSize="2xl"
               padding="10"
               width="600px"
+              value={answer}
+              key={answer}
             >
               {answer}
             </Button>
