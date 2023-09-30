@@ -1,4 +1,11 @@
-import { Badge, Box, Button, SimpleGrid, VStack } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Button,
+  HStack,
+  SimpleGrid,
+  VStack,
+} from "@chakra-ui/react";
 import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getChoices";
 import { useEffect, useState } from "react";
@@ -14,8 +21,27 @@ const Questions = ({ data }: Props) => {
   const [score, setScore] = useState(0);
   const [correctanswer, setCorrectAnswered] = useState<string | null>();
   const [answerIndex, setAnswerIndex] = useState<number | null>();
+  const [seconds, setSeconds] = useState(5);
+  var timer: any;
+  useEffect(() => {
+    // setSeconds(30);
+    timer = setInterval(() => {
+      setSeconds(seconds - 1);
 
-  const answerHandler = (answer: string, index: number) => {
+      if (seconds == 0) {
+        answerHandler(null, null);
+        setSeconds(2);
+        // setVisible((visible) => !visible);
+        // clearInterval(timer);
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  });
+
+  const answerHandler = (answer: string | null, index: number | null) => {
+    if (answer || index == null) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
     if (currentQuestion < 9) {
       if (answer === question.correct_answer) {
         setAnswerIndex(index);
@@ -32,11 +58,13 @@ const Questions = ({ data }: Props) => {
       setEnd(true);
     }
   };
+  setTimeout(() => {});
 
   useEffect(() => {
     setTimeout(() => {
       if (currentQuestion < 10) {
         setShowBadge(false);
+        setSeconds(5);
         setAnswerIndex(null);
         setQuestion(getChoices(data[currentQuestion - 1]));
       }
@@ -82,9 +110,18 @@ const Questions = ({ data }: Props) => {
           ))}
         </SimpleGrid>
       </VStack>
-      <Box bg="yellow" w="100%" p={8} fontSize="3xl" color="white">
-        {score}
-      </Box>
+
+      <HStack
+        bg="yellow"
+        w="100%"
+        p={8}
+        fontSize="4xl"
+        color="white"
+        justifyContent="space-around"
+      >
+        <Box>Score: {score}</Box>
+        <Box>Timer: {seconds}</Box>
+      </HStack>
     </>
   );
 };
