@@ -21,7 +21,9 @@ const useQuestion = (category: number | null) => {
   useEffect(() => {
     setIsLoading(true);
     apiClient
-      .get<Response>("", { params: { amount: 10, category: category } })
+      .get<Response>("", {
+        params: { amount: 10, type: "multiple", category: category },
+      })
       .then((res) => {
         setdata(res.data.results);
         setIsLoading(false);
