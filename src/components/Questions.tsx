@@ -14,14 +14,15 @@ interface Props {
   data: Question[];
 }
 const Questions = ({ data }: Props) => {
+  const length = data.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [question, setQuestion] = useState(getChoices(data[currentQuestion]));
+  const [question, setQuestion] = useState<any | null>(getChoices(data[0]));
   const [end, setEnd] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
   const [score, setScore] = useState(0);
   const [correctanswer, setCorrectAnswer] = useState<string | null>();
   const [answerIndex, setAnswerIndex] = useState<number | null>();
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(2);
   var timer: any;
   useEffect(() => {
     timer = setInterval(() => {
@@ -39,7 +40,7 @@ const Questions = ({ data }: Props) => {
     if (answer || index == null) {
       setCurrentQuestion(currentQuestion + 1);
     }
-    if (currentQuestion < 9) {
+    if (currentQuestion < length) {
       if (answer === question.correct_answer) {
         setAnswerIndex(index);
         setShowBadge(true);
@@ -51,18 +52,22 @@ const Questions = ({ data }: Props) => {
         setCurrentQuestion(currentQuestion + 1);
         setShowBadge(false);
       }
-    } else setEnd(true);
+    } else {
+      setEnd(true);
+    }
   };
 
   useEffect(() => {
     setTimeout(() => {
-      if (currentQuestion < 10) {
-        setShowBadge(false);
-        setSeconds(5);
-        setAnswerIndex(null);
+      if (currentQuestion < length) {
         setQuestion(getChoices(data[currentQuestion - 1]));
-      }
-    }, 2000);
+        setShowBadge(false);
+        setSeconds(2);
+        setAnswerIndex(null);
+
+        console.log(currentQuestion + " on next");
+      } else setEnd(true);
+    }, 1500);
   }, [currentQuestion]);
 
   if (end) return <div>{score}</div>;
@@ -80,7 +85,7 @@ const Questions = ({ data }: Props) => {
           ""
         )}
         <SimpleGrid columns={2} spacing={10} justifyContent="space-around">
-          {question.answers.map((answer, index) => (
+          {question.answers.map((answer: string, index: number) => (
             <Button
               onClick={() => answerHandler(answer, index)}
               fontSize="2xl"
