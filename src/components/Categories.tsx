@@ -10,14 +10,7 @@ const Categories = () => {
   const { data } = useQuestion(category);
   console.log(data);
   if (data && category) {
-    return (
-      // <div>
-      //   {data.map((x) => (
-      //     <p>{x.category}</p>
-      //   ))}
-      // </div>
-      <Questions data={data} />
-    );
+    return <Questions data={data} />;
   }
   return (
     <>

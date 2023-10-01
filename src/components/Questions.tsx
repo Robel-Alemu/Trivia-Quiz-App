@@ -7,7 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Question } from "../hooks/useQuestions";
-import getChoices from "../utils/getChoices";
+import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -19,20 +19,17 @@ const Questions = ({ data }: Props) => {
   const [end, setEnd] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
   const [score, setScore] = useState(0);
-  const [correctanswer, setCorrectAnswered] = useState<string | null>();
+  const [correctanswer, setCorrectAnswer] = useState<string | null>();
   const [answerIndex, setAnswerIndex] = useState<number | null>();
   const [seconds, setSeconds] = useState(5);
   var timer: any;
   useEffect(() => {
-    // setSeconds(30);
     timer = setInterval(() => {
       setSeconds(seconds - 1);
 
       if (seconds == 0) {
         answerHandler(null, null);
         setSeconds(2);
-        // setVisible((visible) => !visible);
-        // clearInterval(timer);
       }
     }, 1000);
     return () => clearInterval(timer);
@@ -50,15 +47,12 @@ const Questions = ({ data }: Props) => {
         setScore(score + 1);
         setCurrentQuestion(currentQuestion + 1);
       } else {
-        setCorrectAnswered(question.correct_answer);
+        setCorrectAnswer(question.correct_answer);
         setCurrentQuestion(currentQuestion + 1);
         setShowBadge(false);
       }
-    } else {
-      setEnd(true);
-    }
+    } else setEnd(true);
   };
-  setTimeout(() => {});
 
   useEffect(() => {
     setTimeout(() => {
@@ -96,7 +90,6 @@ const Questions = ({ data }: Props) => {
               maxWidth="100%"
               value={answer}
               key={answer}
-              id={answer}
               colorScheme={
                 answerIndex == index
                   ? "green"
@@ -110,7 +103,6 @@ const Questions = ({ data }: Props) => {
           ))}
         </SimpleGrid>
       </VStack>
-
       <HStack
         bg="yellow"
         w="100%"
