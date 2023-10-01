@@ -9,6 +9,7 @@ import {
 import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
+import ResultBoard from "./ResultBoard";
 
 interface Props {
   data: Question[];
@@ -70,7 +71,7 @@ const Questions = ({ data }: Props) => {
     }, 1500);
   }, [currentQuestion]);
 
-  if (end) return <div>{score}</div>;
+  if (end) return <ResultBoard score={score} />;
   return (
     <>
       <VStack marginY="100">
