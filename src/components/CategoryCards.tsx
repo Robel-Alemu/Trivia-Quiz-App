@@ -1,6 +1,7 @@
 import { Card, CardBody, Heading, Image, Img } from "@chakra-ui/react";
 import { Categories } from "../utils/categories";
 import film from "../assets/denise-jans-tV80374iytg-unsplash.jpg";
+import CategorySkeleton from "./CategorySkeleton";
 interface Props {
   categories: Categories;
   onSeletCategory: (category: number) => void;

@@ -1,5 +1,6 @@
 import film from "../assets/denise-jans-tV80374iytg-unsplash.jpg";
-import books from "../assets/thomas-kelley-hHL08lF7Ikc-unsplash.jpg";
+// import books from "../assets/thomas-kelley-hHL08lF7Ikc-unsplash.jpg";
+import books from "../assets/small thomas-kelley-hHL08lF7Ikc-unsplash.png";
 import music from "../assets/alphacolor-XdDyRTVo-iw-unsplash.jpg";
 import videoGames from "../assets/denise-jans-HoqYAnwR-1g-unsplash.jpg";
 import boardGames from "../assets/jeshoots-com-fzOITuS1DIQ-unsplash.jpg";

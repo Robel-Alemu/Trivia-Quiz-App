@@ -1,15 +1,25 @@
 import { Grid, GridItem, Heading, Show, SimpleGrid } from "@chakra-ui/react";
 import categories from "../utils/categories";
 import CategoryCards from "./CategoryCards";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useQuestion from "../hooks/useQuestions";
 import Questions from "./Questions";
 import Aside from "./Aside";
+import CategorySkeleton from "./CategorySkeleton";
 
 const Categories = () => {
   const [category, setCategory] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
   const asideWidth = category == null ? "40%" : "";
   const { data } = useQuestion(category);
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   console.log(data);
   if (data && category) {
     return <Questions data={data} />;
@@ -42,13 +52,19 @@ const Categories = () => {
             spacing={8}
           >
             {" "}
-            {categories.map((category) => (
-              <CategoryCards
-                key={category.id}
-                onSeletCategory={(category) => setCategory(category)}
-                categories={category}
-              />
-            ))}
+            {loading ? (
+              skeletons.map((skeleton) => <CategorySkeleton key={skeleton} />)
+            ) : (
+              <>
+                {categories.map((category) => (
+                  <CategoryCards
+                    key={category.id}
+                    onSeletCategory={(category) => setCategory(category)}
+                    categories={category}
+                  />
+                ))}
+              </>
+            )}
           </SimpleGrid>
         </GridItem>
       </Grid>
