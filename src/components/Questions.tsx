@@ -97,8 +97,8 @@ const Questions = ({ data }: Props) => {
             <Button
               onClick={() => answerHandler(answer, index)}
               fontSize="2xl"
-              padding="10"
-              width="600px"
+              padding="12"
+              width="700px"
               whiteSpace="normal"
               maxWidth="100%"
               value={answer}

@@ -1,13 +1,14 @@
-import { Grid, GridItem, Show, SimpleGrid } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, Show, SimpleGrid } from "@chakra-ui/react";
 import categories from "../utils/categories";
 import CategoryCards from "./CategoryCards";
 import { useState } from "react";
 import useQuestion from "../hooks/useQuestions";
 import Questions from "./Questions";
+import Aside from "./Aside";
 
 const Categories = () => {
   const [category, setCategory] = useState<number | null>(null);
-  const asideWidth = category == null ? "30%" : "";
+  const asideWidth = category == null ? "40%" : "";
   const { data } = useQuestion(category);
   console.log(data);
   if (data && category) {
@@ -25,12 +26,19 @@ const Categories = () => {
           lg: asideWidth + "1fr",
         }}
       >
-        <Show above="lg"></Show>
+        <Show above="lg">
+          <Aside />
+        </Show>
 
-        <GridItem area="main" marginRight={3} marginBottom={10}>
+        <GridItem area="main" marginRight={3}>
+          <Heading textAlign="center" margin={10}>
+            Please select a category
+          </Heading>
           <SimpleGrid
             columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
             padding="10px"
+            // marginY="5%"
+            // overflow="hidden"
             spacing={8}
           >
             {" "}
