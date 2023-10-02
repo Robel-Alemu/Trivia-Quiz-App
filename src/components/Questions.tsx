@@ -11,6 +11,7 @@ import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 import ResultBoard from "./ResultBoard";
 import QuestionFooter from "./QuestionFooter";
+import LoadingLayout from "./LoadingLayout";
 
 interface Props {
   data: Question[];
@@ -26,6 +27,7 @@ const Questions = ({ data }: Props) => {
   const [answerIndex, setAnswerIndex] = useState<number | null>();
   const [seconds, setSeconds] = useState(2);
   var timer: any;
+
   useEffect(() => {
     timer = setInterval(() => {
       setSeconds(seconds - 1);
@@ -73,6 +75,8 @@ const Questions = ({ data }: Props) => {
   }, [currentQuestion]);
 
   if (end) return <ResultBoard score={score} />;
+  if (currentQuestion == 0) return <LoadingLayout />;
+
   return (
     <>
       <VStack marginY="100">
