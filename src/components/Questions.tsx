@@ -10,6 +10,7 @@ import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 import ResultBoard from "./ResultBoard";
+import QuestionFooter from "./QuestionFooter";
 
 interface Props {
   data: Question[];
@@ -74,7 +75,7 @@ const Questions = ({ data }: Props) => {
   if (end) return <ResultBoard score={score} />;
   return (
     <>
-      <VStack marginY="50">
+      <VStack marginY="100">
         <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
           {question.question}
         </Box>
@@ -115,17 +116,11 @@ const Questions = ({ data }: Props) => {
           ))}
         </SimpleGrid>
       </VStack>
-      <HStack
-        bg="yellow"
-        w="100%"
-        p={8}
-        fontSize="4xl"
-        color="white"
-        justifyContent="space-around"
-      >
+
+      <QuestionFooter>
         <Box>Score: {score}</Box>
         <Box>Timer: {seconds}</Box>
-      </HStack>
+      </QuestionFooter>
     </>
   );
 };
