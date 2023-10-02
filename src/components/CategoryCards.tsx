@@ -13,7 +13,7 @@ const CategoryCards = ({ categories, onSeletCategory }: Props) => {
       key={categories.id}
       onClick={() => onSeletCategory(categories.category)}
     >
-      <Img src={categories.image} />
+      <Img borderRadius={10} src={categories.image} />
       <CardBody>
         <Heading fontSize="1xl">{categories.name}</Heading>{" "}
       </CardBody>

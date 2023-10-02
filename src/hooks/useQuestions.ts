@@ -22,7 +22,7 @@ const useQuestion = (category: number | null) => {
     setIsLoading(true);
     apiClient
       .get<Response>("", {
-        params: { amount: 3, type: "multiple", category: category },
+        params: { amount: 10, type: "multiple", category: category },
       })
       .then((res) => {
         setdata(res.data.results);

@@ -74,7 +74,7 @@ const Questions = ({ data }: Props) => {
   if (end) return <ResultBoard score={score} />;
   return (
     <>
-      <VStack marginY="100">
+      <VStack marginY="50">
         <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
           {question.question}
         </Box>
@@ -85,7 +85,13 @@ const Questions = ({ data }: Props) => {
         ) : (
           ""
         )}
-        <SimpleGrid columns={2} spacing={10} justifyContent="space-around">
+        <SimpleGrid
+          columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
+          spacing={10}
+          paddingX="20"
+          paddingY="5"
+          justifyContent="space-around"
+        >
           {question.answers.map((answer: string, index: number) => (
             <Button
               onClick={() => answerHandler(answer, index)}
