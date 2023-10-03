@@ -2,14 +2,14 @@ import film from "../assets/jon-tyson-A-obUh61bKw-unsplash.jpg";
 import books from "../assets/clarisse-meyer-jKU2NneZAbI-unsplash.jpg";
 
 import music from "../assets/c-d-x-PDX_a_82obo-unsplash.jpg";
-import videoGames from "../assets/igor-karimov-fXmmSz5KkO8-unsplash.jpg";
+import videoGames from "../assets/videogames.png";
 
 import boardGames from "../assets/jeshoots-com-fzOITuS1DIQ-unsplash (1).jpg";
 import scienceNature from "../assets/greg-rakozy-oMpAz-DN-9I-unsplash (1).jpg";
 import scienceComputer from "../assets/alexandre-debieve-FO7JIlwjOtU-unsplash (1).jpg";
 import sports from "../assets/jonathan-ward-3dV5K_R782o-unsplash.jpg";
 import geography from "../assets/arpit-rastogi-xv7DTjnx2YQ-unsplash.jpg";
-import history from "../assets/europeana--F7h7BoDJgE-unsplash (1).jpg";
+import history from "../assets/history2.png";
 import art from "../assets/santiago-yanez-KogReqQ3p1E-unsplash.jpg";
 import vechicle from "../assets/janne-aspegren-eXw4YHCU7ms-unsplash.jpg";
 

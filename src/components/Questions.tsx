@@ -95,7 +95,7 @@ const Questions = ({ data, category }: Props) => {
         <Box>Score : {score}</Box>
 
         <HStack display="flex" justifyContent="center" alignItems="center">
-          <BsFillStopwatchFill /> <Text> {seconds}</Text>
+          <BsFillStopwatchFill /> <Text>&nbsp;{seconds}</Text>
         </HStack>
       </QuestionFooter>
 

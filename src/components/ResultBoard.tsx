@@ -33,20 +33,20 @@ const ResultBoard = ({ score, category }: Props) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      bg="teal"
+      // backgroundColor="#3c8ca7"
+      bg="#074d63"
       height="100vh"
     >
       <VStack
-        width="98vw"
-        height="95%"
+        width="96vw"
+        height="92%"
         borderRadius={20}
-        bg="blackAlpha.600"
         fontSize="5xl"
         textAlign="center"
       >
         {" "}
         <Heading marginTop={60}> Your Score is {score} %</Heading>
-        <HStack marginTop={20} width="60%" justifyContent="space-evenly">
+        <HStack marginTop={20} width="70%" justifyContent="space-evenly">
           <Button
             width="13%"
             height="60px"
