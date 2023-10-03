@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import Questions from "./Questions";
 import useQuestion from "../hooks/useQuestions";
+import Categories from "./Categories";
 interface Props {
   score: number;
   category: number;
@@ -19,9 +20,13 @@ interface Props {
 
 const ResultBoard = ({ score, category }: Props) => {
   const [retake, setRetake] = useState(false);
+  const [done, setDone] = useState(false);
   const { data } = useQuestion(category);
   if (retake) {
     return <Questions category={category} data={data} />;
+  }
+  if (done) {
+    return <Categories />;
   }
   return (
     <Box
@@ -42,7 +47,12 @@ const ResultBoard = ({ score, category }: Props) => {
         {" "}
         <Heading marginTop={60}> Your Score is {score} %</Heading>
         <HStack marginTop={20} width="60%" justifyContent="space-evenly">
-          <Button width="13%" height="60px" fontSize="2xl">
+          <Button
+            width="13%"
+            height="60px"
+            fontSize="2xl"
+            onClick={() => setDone(true)}
+          >
             Done
           </Button>
           <Button
