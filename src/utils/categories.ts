@@ -1,16 +1,17 @@
-import film from "../assets/denise-jans-tV80374iytg-unsplash.jpg";
-// import books from "../assets/thomas-kelley-hHL08lF7Ikc-unsplash.jpg";
-import books from "../assets/small thomas-kelley-hHL08lF7Ikc-unsplash.png";
-import music from "../assets/alphacolor-XdDyRTVo-iw-unsplash.jpg";
-import videoGames from "../assets/denise-jans-HoqYAnwR-1g-unsplash.jpg";
-import boardGames from "../assets/jeshoots-com-fzOITuS1DIQ-unsplash.jpg";
-import scienceNature from "../assets/greg-rakozy-oMpAz-DN-9I-unsplash.jpg";
-import scienceComputer from "../assets/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg";
-import sports from "../assets/victor-freitas-qZ-U9z4TQ6A-unsplash.jpg";
-import geography from "../assets/kyle-glenn-nXt5HtLmlgE-unsplash.jpg";
-import history from "../assets/europeana--F7h7BoDJgE-unsplash.jpg";
-import art from "../assets/khara-woods-KR84RpMCb0w-unsplash.jpg";
-import vechicle from "../assets/kevin-bhagat-3cLpiv8h5so-unsplash.jpg";
+import film from "../assets/jon-tyson-A-obUh61bKw-unsplash.jpg";
+import books from "../assets/clarisse-meyer-jKU2NneZAbI-unsplash.jpg";
+// import books from "../assets/jonathan-simcoe-pSjwUXBMnlc-unsplash.jpg";
+import music from "../assets/c-d-x-PDX_a_82obo-unsplash.jpg";
+import videoGames from "../assets/igor-karimov-fXmmSz5KkO8-unsplash.jpg";
+
+import boardGames from "../assets/jeshoots-com-fzOITuS1DIQ-unsplash (1).jpg";
+import scienceNature from "../assets/greg-rakozy-oMpAz-DN-9I-unsplash (1).jpg";
+import scienceComputer from "../assets/alexandre-debieve-FO7JIlwjOtU-unsplash (1).jpg";
+import sports from "../assets/jonathan-ward-3dV5K_R782o-unsplash.jpg";
+import geography from "../assets/arpit-rastogi-xv7DTjnx2YQ-unsplash.jpg";
+import history from "../assets/europeana--F7h7BoDJgE-unsplash (1).jpg";
+import art from "../assets/santiago-yanez-KogReqQ3p1E-unsplash.jpg";
+import vechicle from "../assets/janne-aspegren-eXw4YHCU7ms-unsplash.jpg";
 
 export interface Categories {
   id: number;
