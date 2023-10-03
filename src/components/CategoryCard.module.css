@@ -1,0 +1,8 @@
+.grow { 
+    transition: all .2s ease-in-out; 
+    }
+    
+    .grow:hover{
+        transform: scale(1.05);
+     box-shadow: 0  10px 25px rgba(252, 250, 250, 0.12), 0 4px 8px rgba(255, 255, 255, 0.06);
+   }

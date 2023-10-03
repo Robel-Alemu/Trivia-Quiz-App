@@ -1,7 +1,7 @@
-import { Card, CardBody, Heading, Image, Img } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Img } from "@chakra-ui/react";
 import { Categories } from "../utils/categories";
-import film from "../assets/denise-jans-tV80374iytg-unsplash.jpg";
-import CategorySkeleton from "./CategorySkeleton";
+import styles from "../components/CategoryCard.module.css";
+
 interface Props {
   categories: Categories;
   onSeletCategory: (category: number) => void;
@@ -10,11 +10,12 @@ interface Props {
 const CategoryCards = ({ categories, onSeletCategory }: Props) => {
   return (
     <Card
-      borderRadius={10}
+      className={styles.grow}
+      borderRadius={15}
       key={categories.id}
       onClick={() => onSeletCategory(categories.category)}
     >
-      <Img borderRadius={10} src={categories.image} />
+      <Img borderRadius={15} src={categories.image} />
       <CardBody>
         <Heading fontSize="1xl">{categories.name}</Heading>{" "}
       </CardBody>

@@ -1,6 +1,6 @@
 import film from "../assets/jon-tyson-A-obUh61bKw-unsplash.jpg";
 import books from "../assets/clarisse-meyer-jKU2NneZAbI-unsplash.jpg";
-// import books from "../assets/jonathan-simcoe-pSjwUXBMnlc-unsplash.jpg";
+
 import music from "../assets/c-d-x-PDX_a_82obo-unsplash.jpg";
 import videoGames from "../assets/igor-karimov-fXmmSz5KkO8-unsplash.jpg";
 
