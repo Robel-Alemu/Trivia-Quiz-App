@@ -29,6 +29,7 @@ const Questions = ({ data, category }: Props) => {
   const [answerIndex, setAnswerIndex] = useState<number | null>();
   const [seconds, setSeconds] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
+  const [disableButton, setDisableButton] = useState(false);
   var timer: any;
   useEffect(() => {
     setTimeout(() => {
@@ -49,10 +50,12 @@ const Questions = ({ data, category }: Props) => {
   });
 
   const answerHandler = (answer: string | null, index: number | null) => {
+    setDisableButton(true);
     if (answer || index == null) {
       setCurrentQuestion(currentQuestion + 1);
     }
     if (currentQuestion < length) {
+      setDisableButton(true);
       if (answer === question.correct_answer) {
         setAnswerIndex(index);
         setShowBadge(true);
@@ -74,6 +77,7 @@ const Questions = ({ data, category }: Props) => {
       if (currentQuestion < length) {
         setQuestion(getChoices(data[currentQuestion - 1]));
         setShowBadge(false);
+        setDisableButton(false);
         setSeconds(30);
         setAnswerIndex(null);
 
@@ -91,7 +95,7 @@ const Questions = ({ data, category }: Props) => {
         <Box>Score : {score}</Box>
 
         <HStack display="flex" justifyContent="center" alignItems="center">
-          <BsFillStopwatchFill /> <Text>- {seconds}</Text>
+          <BsFillStopwatchFill /> <Text> {seconds}</Text>
         </HStack>
       </QuestionFooter>
 
@@ -115,6 +119,7 @@ const Questions = ({ data, category }: Props) => {
         >
           {question.answers.map((answer: string, index: number) => (
             <Button
+              isDisabled={disableButton}
               onClick={() => answerHandler(answer, index)}
               fontSize="2xl"
               padding="12"
