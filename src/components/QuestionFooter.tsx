@@ -6,10 +6,10 @@ interface Props {
 const QuestionFooter = ({ children }: Props) => {
   return (
     <HStack
-      bg="yellow"
+      // bg="yellow"
       w="100%"
       p={8}
-      fontSize="4xl"
+      fontSize="5xl"
       color="white"
       justifyContent="space-around"
     >
