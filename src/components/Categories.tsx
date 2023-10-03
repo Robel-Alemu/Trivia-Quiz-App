@@ -22,7 +22,7 @@ const Categories = () => {
 
   console.log(data);
   if (data && category) {
-    return <Questions data={data} />;
+    return <Questions category={category} data={data} />;
   }
   return (
     <>

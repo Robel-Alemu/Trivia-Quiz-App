@@ -9,12 +9,20 @@ import {
   Stack,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import Questions from "./Questions";
+import useQuestion from "../hooks/useQuestions";
 interface Props {
   score: number;
+  category: number;
 }
 
-const ResultBoard = ({ score }: Props) => {
+const ResultBoard = ({ score, category }: Props) => {
+  const [retake, setRetake] = useState(false);
+  const { data } = useQuestion(category);
+  if (retake) {
+    return <Questions category={category} data={data} />;
+  }
   return (
     <Box
       display="flex"
@@ -37,7 +45,12 @@ const ResultBoard = ({ score }: Props) => {
           <Button width="13%" height="60px" fontSize="2xl">
             Done
           </Button>
-          <Button width="13%" height="60px" fontSize="2xl">
+          <Button
+            width="13%"
+            height="60px"
+            fontSize="2xl"
+            onClick={() => setRetake(true)}
+          >
             Retake
           </Button>
         </HStack>

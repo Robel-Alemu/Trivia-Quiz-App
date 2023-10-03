@@ -15,8 +15,9 @@ import LoadingLayout from "./LoadingLayout";
 
 interface Props {
   data: Question[];
+  category: number;
 }
-const Questions = ({ data }: Props) => {
+const Questions = ({ data, category }: Props) => {
   const length = data.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState<any | null>(getChoices(data[0]));
@@ -74,7 +75,7 @@ const Questions = ({ data }: Props) => {
     }, 1500);
   }, [currentQuestion]);
 
-  if (end) return <ResultBoard score={score} />;
+  if (end) return <ResultBoard category={category} score={score} />;
   if (currentQuestion == 0) return <LoadingLayout />;
 
   return (

@@ -6,6 +6,7 @@ const getChoices = (data: Question) => {
     question: decodeHtmlEntities(data.question),
     answers: [""],
     correct_answer: decodeHtmlEntities(data.correct_answer),
+    category: data.category,
   };
 
   let answers = new Array();
