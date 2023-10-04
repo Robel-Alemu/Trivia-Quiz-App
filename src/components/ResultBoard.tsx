@@ -1,18 +1,21 @@
 import {
+  Badge,
   Box,
   Button,
-  Container,
-  Flex,
   HStack,
   Heading,
-  Progress,
-  Stack,
+  Img,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import excellent from "../assets/giphy.gif";
+import meh from "../assets/meh.gif";
+import terrible from "../assets/terrible.gif";
+import bad from "../assets/bad.gif";
+import { useState } from "react";
 import Questions from "./Questions";
 import useQuestion from "../hooks/useQuestions";
 import QuizDashboard from "./QuizDashboard";
+
 interface Props {
   score: number;
   category: number;
@@ -22,6 +25,15 @@ const ResultBoard = ({ score, category }: Props) => {
   const [retake, setRetake] = useState(false);
   const [done, setDone] = useState(false);
   const { data } = useQuestion(category);
+  const totalScore = score * 10;
+  const reaction =
+    totalScore < 25
+      ? terrible
+      : totalScore < 40
+      ? bad
+      : totalScore < 70
+      ? meh
+      : excellent;
   if (retake) {
     return <Questions category={category} data={data} />;
   }
@@ -33,7 +45,6 @@ const ResultBoard = ({ score, category }: Props) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      // backgroundColor="#3c8ca7"
       bg="#074d63"
       height="100vh"
     >
@@ -44,11 +55,41 @@ const ResultBoard = ({ score, category }: Props) => {
         fontSize="5xl"
         textAlign="center"
       >
-        {" "}
-        <Heading marginTop={60}> Your Score is {score} %</Heading>
-        <HStack marginTop={20} width="70%" justifyContent="space-evenly">
+        <Img
+          marginTop="7%"
+          borderRadius={20}
+          src={reaction}
+          width="200px"
+          height="200px"
+        />
+
+        <Heading marginTop={10}>
+          {" "}
+          Your Score is{" "}
+          <Badge
+            variant="solid"
+            borderRadius={10}
+            paddingX={5}
+            paddingY={1}
+            fontSize="4xl"
+            colorScheme={
+              totalScore < 50
+                ? "red"
+                : score >= 50 || score < 70
+                ? "yellow"
+                : "green"
+            }
+          >
+            {" "}
+            {totalScore}%
+          </Badge>{" "}
+        </Heading>
+        <HStack marginTop={10} maxWidth="96vw">
           <Button
-            width="13%"
+            colorScheme="telegram"
+            marginX={5}
+            paddingX={10}
+            width="65%"
             height="60px"
             fontSize="2xl"
             onClick={() => setDone(true)}
@@ -56,7 +97,10 @@ const ResultBoard = ({ score, category }: Props) => {
             Done
           </Button>
           <Button
-            width="13%"
+            colorScheme="whatsapp"
+            marginX={5}
+            paddingX={10}
+            width="65%"
             height="60px"
             fontSize="2xl"
             onClick={() => setRetake(true)}
