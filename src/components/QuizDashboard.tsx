@@ -40,15 +40,13 @@ const QuizDashboard = () => {
           <Aside />
         </Show>
 
-        <GridItem area="main" marginRight={3} overflow="hidden">
+        <GridItem area="main" overflow="hidden">
           <Heading textAlign="center" marginTop={5} fontSize="2xl">
             Please select a category
           </Heading>
           <SimpleGrid
             columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
             padding="20px"
-            // marginY="5%"
-            // overflow="hidden"
             spacing={5}
           >
             {" "}

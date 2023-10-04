@@ -21,48 +21,51 @@ const QuizArea = ({
   answerHandler,
 }: Props) => {
   return (
-    <VStack>
-      <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
-        {question.question}
-      </Box>
-
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
-        spacing={10}
-        paddingX="20"
-        paddingY="5"
-        justifyContent="space-around"
-      >
-        {question.answers.map((answer: string, index: number) => (
-          <Button
-            isDisabled={
-              answer == correctanswer || answerIndex == index
-                ? false
-                : disableButton
-            }
-            onClick={() => answerHandler(answer, index)}
-            fontSize="2xl"
-            onDoubleClick={() => null}
-            padding="12"
-            width="700px"
-            whiteSpace="normal"
-            maxWidth="100%"
-            value={answer}
-            key={answer}
-            variant={"solid"}
-            colorScheme={
-              answerIndex == index
-                ? "green"
-                : answer == correctanswer
-                ? "red"
-                : "gray"
-            }
-          >
-            {answer}
-          </Button>
-        ))}
-      </SimpleGrid>
-    </VStack>
+    <>
+      <VStack>
+        <Box textAlign="center" p={8} fontSize="3xl" color="white">
+          {question.question}
+        </Box>
+        <SimpleGrid
+          marginX="5%"
+          columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
+          spacing={10}
+          paddingY="5"
+          overflow={"hidden"}
+          justifyContent="space-around"
+        >
+          {question.answers.map((answer: string, index: number) => (
+            <Button
+              isDisabled={
+                answer == correctanswer || answerIndex == index
+                  ? false
+                  : disableButton
+              }
+              onClick={() => answerHandler(answer, index)}
+              fontSize="2xl"
+              onDoubleClick={() => null}
+              padding="12"
+              width="90vw"
+              whiteSpace="normal"
+              maxWidth="90%"
+              margin="auto"
+              value={answer}
+              key={answer}
+              variant={"solid"}
+              colorScheme={
+                answerIndex == index
+                  ? "green"
+                  : answer == correctanswer
+                  ? "red"
+                  : "gray"
+              }
+            >
+              {answer}
+            </Button>
+          ))}
+        </SimpleGrid>
+      </VStack>
+    </>
   );
 };
 
