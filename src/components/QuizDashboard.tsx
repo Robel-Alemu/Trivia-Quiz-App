@@ -46,7 +46,8 @@ const QuizDashboard = () => {
           </Heading>
           <SimpleGrid
             columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-            padding="20px"
+            // padding="20px"
+            margin={5}
             spacing={5}
           >
             {" "}
