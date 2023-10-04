@@ -16,13 +16,14 @@ const CategoryCards = ({ categories, onSeletCategory }: Props) => {
       className={styles.grow}
     >
       <Card
-        backgroundColor="#3c8ca7"
+        backgroundColor="#476a88"
         key={categories.id}
         onClick={() => onSeletCategory(categories.category)}
       >
         <Img borderRadius={10} src={categories.image} />
-        <CardBody backgroundColor="#3c8ca7">
-          <Heading backgroundColor="#3c8ca7" fontSize="1vw">
+        <CardBody backgroundColor="#476a88">
+          {/* #3c8ca7 */}
+          <Heading backgroundColor="#476a88" fontSize="1vw">
             {categories.name}
           </Heading>
         </CardBody>
