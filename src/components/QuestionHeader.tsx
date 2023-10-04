@@ -1,5 +1,6 @@
 import { Badge, Box, HStack, Text } from "@chakra-ui/react";
 import { BsFillStopwatchFill } from "react-icons/bs";
+import { BsFillClipboardFill } from "react-icons/bs";
 interface Props {
   score: number;
   seconds: number;
@@ -16,14 +17,22 @@ const QuestionHeader = ({ score, showBadge, seconds }: Props) => {
         justifyContent="space-around"
       >
         <Box>
-          Score : {score}{" "}
-          {showBadge ? (
-            <Badge variant="outline" colorScheme="green" fontSize="xl">
-              +1 points
-            </Badge>
-          ) : (
-            ""
-          )}
+          <HStack>
+            <BsFillClipboardFill />{" "}
+            <Text>
+              &nbsp;
+              {score}{" "}
+              {showBadge ? (
+                <Badge variant="outline" colorScheme="green" fontSize="xl">
+                  +1 points
+                </Badge>
+              ) : (
+                ""
+              )}
+            </Text>
+          </HStack>
+
+          {/* Score : {score}{" "} */}
         </Box>
 
         <HStack
