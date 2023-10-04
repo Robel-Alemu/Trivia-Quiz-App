@@ -46,7 +46,7 @@ const Questions = ({ data, category }: Props) => {
     if (!isButtonClicked) {
       setIsButtonClicked(true);
       setDisableButton(true);
-      if (answer || index == null) {
+      if (answer == null && index == null) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setAnswerIndex(null);
       }
@@ -60,9 +60,10 @@ const Questions = ({ data, category }: Props) => {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
           setCorrectAnswer(question.correct_answer);
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-          setAnswerIndex(null);
+
+          // setAnswerIndex(null);
           setShowBadge(false);
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
       } else {
         setEnd(true);
