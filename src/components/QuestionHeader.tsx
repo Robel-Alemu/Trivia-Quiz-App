@@ -3,14 +3,14 @@ import React from "react";
 interface Props {
   children: any;
 }
-const QuestionFooter = ({ children }: Props) => {
+const QuestionHeader = ({ children }: Props) => {
   return (
     <HStack
-      // bg="yellow"
+      // bg="brown"
       w="100%"
       p={8}
       fontSize="5xl"
-      color="white"
+      color="whiteAlpha.800"
       justifyContent="space-around"
     >
       {children}
@@ -18,4 +18,4 @@ const QuestionFooter = ({ children }: Props) => {
   );
 };
 
-export default QuestionFooter;
+export default QuestionHeader;

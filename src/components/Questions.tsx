@@ -11,7 +11,7 @@ import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 import ResultBoard from "./ResultBoard";
-import QuestionFooter from "./QuestionFooter";
+import QuestionHeader from "./QuestionHeader";
 import LoadingLayout from "./LoadingLayout";
 import { BsFillStopwatchFill } from "react-icons/bs";
 interface Props {
@@ -76,10 +76,11 @@ const Questions = ({ data, category }: Props) => {
     setTimeout(() => {
       if (currentQuestion < length) {
         setQuestion(getChoices(data[currentQuestion - 1]));
-        setShowBadge(false);
-        setDisableButton(false);
-        setSeconds(30);
         setAnswerIndex(null);
+        setDisableButton(false);
+        setShowBadge(false);
+
+        setSeconds(30);
 
         console.log(currentQuestion + " on next");
       } else setEnd(true);
@@ -91,25 +92,39 @@ const Questions = ({ data, category }: Props) => {
 
   return (
     <>
-      <QuestionFooter>
-        <Box>Score : {score}</Box>
+      <QuestionHeader>
+        <Box>
+          Score : {score}{" "}
+          {showBadge ? (
+            <Badge variant="outline" colorScheme="green" fontSize="xl">
+              +1 points
+            </Badge>
+          ) : (
+            ""
+          )}
+        </Box>
 
-        <HStack display="flex" justifyContent="center" alignItems="center">
-          <BsFillStopwatchFill /> <Text>&nbsp;{seconds}</Text>
+        <HStack
+          display="flex"
+          justifyContent="center"
+          bg="transparent"
+          alignItems="center"
+        >
+          <BsFillStopwatchFill color="orange" /> <Text>{seconds}</Text>
         </HStack>
-      </QuestionFooter>
+      </QuestionHeader>
 
       <VStack>
         <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
           {question.question}
         </Box>
-        {showBadge ? (
+        {/* {showBadge ? (
           <Badge variant="outline" colorScheme="green" fontSize="xl">
             +1 points
           </Badge>
         ) : (
           ""
-        )}
+        )} */}
         <SimpleGrid
           columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
           spacing={10}
