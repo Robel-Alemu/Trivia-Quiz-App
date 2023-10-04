@@ -44,6 +44,7 @@ const Questions = ({ data, category }: Props) => {
     setDisableButton(true);
     if (answer || index == null) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setAnswerIndex(null);
     }
     if (currentQuestionIndex < length) {
       setDisableButton(true);
@@ -56,6 +57,7 @@ const Questions = ({ data, category }: Props) => {
       } else {
         setCorrectAnswer(question.correct_answer);
         setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setAnswerIndex(null);
         setShowBadge(false);
       }
     } else {
@@ -66,7 +68,7 @@ const Questions = ({ data, category }: Props) => {
   useEffect(() => {
     setTimeout(() => {
       if (currentQuestionIndex < length) {
-        setQuestion(getChoices(data[currentQuestionIndex - 1]));
+        setQuestion(getChoices(data[currentQuestionIndex]));
         setAnswerIndex(null);
         setDisableButton(false);
         setShowBadge(false);

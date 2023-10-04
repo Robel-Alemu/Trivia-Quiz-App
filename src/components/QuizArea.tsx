@@ -42,6 +42,7 @@ const QuizArea = ({
             }
             onClick={() => answerHandler(answer, index)}
             fontSize="2xl"
+            onDoubleClick={() => null}
             padding="12"
             width="700px"
             whiteSpace="normal"
