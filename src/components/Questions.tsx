@@ -119,7 +119,11 @@ const Questions = ({ data, category }: Props) => {
         >
           {question.answers.map((answer: string, index: number) => (
             <Button
-              isDisabled={disableButton}
+              isDisabled={
+                answer == correctanswer || answerIndex == index
+                  ? false
+                  : disableButton
+              }
               onClick={() => answerHandler(answer, index)}
               fontSize="2xl"
               padding="12"
