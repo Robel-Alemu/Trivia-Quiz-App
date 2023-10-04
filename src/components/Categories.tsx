@@ -40,16 +40,16 @@ const Categories = () => {
           <Aside />
         </Show>
 
-        <GridItem area="main" marginRight={3}>
-          <Heading textAlign="center" margin={10}>
+        <GridItem area="main" marginRight={3} overflow="hidden">
+          <Heading textAlign="center" marginTop={5} fontSize="2xl">
             Please select a category
           </Heading>
           <SimpleGrid
             columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-            padding="10px"
+            padding="20px"
             // marginY="5%"
             // overflow="hidden"
-            spacing={8}
+            spacing={5}
           >
             {" "}
             {loading ? (

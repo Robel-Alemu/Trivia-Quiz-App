@@ -22,7 +22,7 @@ const CategoryCards = ({ categories, onSeletCategory }: Props) => {
       >
         <Img borderRadius={10} src={categories.image} />
         <CardBody backgroundColor="#3c8ca7">
-          <Heading backgroundColor="#3c8ca7" fontSize="1xl">
+          <Heading backgroundColor="#3c8ca7" fontSize="1vw">
             {categories.name}
           </Heading>
         </CardBody>

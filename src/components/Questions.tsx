@@ -99,7 +99,7 @@ const Questions = ({ data, category }: Props) => {
         </HStack>
       </QuestionFooter>
 
-      <VStack marginY="100">
+      <VStack>
         <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
           {question.question}
         </Box>
@@ -128,13 +128,21 @@ const Questions = ({ data, category }: Props) => {
               maxWidth="100%"
               value={answer}
               key={answer}
+              variant={"solid"}
               colorScheme={
                 answerIndex == index
                   ? "green"
                   : answer == correctanswer
-                  ? "red"
+                  ? "pink"
                   : "gray"
               }
+              // bg={
+              //   answerIndex == index
+              //     ? "green"
+              //     : answer == correctanswer
+              //     ? "red"
+              //     : "gray"
+              // }
             >
               {answer}
             </Button>

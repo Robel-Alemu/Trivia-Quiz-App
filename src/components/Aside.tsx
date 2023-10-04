@@ -4,7 +4,7 @@ const Aside = () => {
   return (
     <VStack marginY="40%">
       <Heading fontSize="5xl">Welcome </Heading>
-      <Heading fontSize="2xl">
+      <Heading fontSize="1xl">
         Knowledge is power, and trivia is its playground.
       </Heading>
     </VStack>
