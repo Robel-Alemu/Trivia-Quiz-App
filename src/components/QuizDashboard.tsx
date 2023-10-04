@@ -7,7 +7,7 @@ import Questions from "./Questions";
 import Aside from "./Aside";
 import CategorySkeleton from "./CategorySkeleton";
 
-const Categories = () => {
+const QuizDashboard = () => {
   const [category, setCategory] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const asideWidth = category == null ? "40%" : "";
@@ -72,4 +72,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default QuizDashboard;

@@ -1,10 +1,10 @@
-import Categories from "./components/Categories";
+import QuizDashboard from "./components/QuizDashboard";
 import { useState } from "react";
 
 function App() {
   return (
     <>
-      <Categories />
+      <QuizDashboard />
     </>
   );
 }

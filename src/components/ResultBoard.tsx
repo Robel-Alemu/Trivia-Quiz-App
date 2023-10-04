@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import Questions from "./Questions";
 import useQuestion from "../hooks/useQuestions";
-import Categories from "./Categories";
+import QuizDashboard from "./QuizDashboard";
 interface Props {
   score: number;
   category: number;
@@ -26,7 +26,7 @@ const ResultBoard = ({ score, category }: Props) => {
     return <Questions category={category} data={data} />;
   }
   if (done) {
-    return <Categories />;
+    return <QuizDashboard />;
   }
   return (
     <Box
