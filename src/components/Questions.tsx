@@ -1,23 +1,23 @@
-import { Box, Button, SimpleGrid, VStack } from "@chakra-ui/react";
 import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 import ResultBoard from "./ResultBoard";
 import QuestionHeader from "./QuestionHeader";
 import LoadingLayout from "./LoadingLayout";
+import QuizArea from "./QuizArea";
 interface Props {
   data: Question[];
   category: number;
 }
 const Questions = ({ data, category }: Props) => {
   const length = data.length;
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [question, setQuestion] = useState<any | null>(getChoices(data[0]));
   const [end, setEnd] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
   const [score, setScore] = useState(0);
-  const [correctanswer, setCorrectAnswer] = useState<string | null>();
-  const [answerIndex, setAnswerIndex] = useState<number | null>();
+  const [correctanswer, setCorrectAnswer] = useState<string | null>(null);
+  const [answerIndex, setAnswerIndex] = useState<number | null>(null);
   const [seconds, setSeconds] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [disableButton, setDisableButton] = useState(false);
@@ -43,19 +43,19 @@ const Questions = ({ data, category }: Props) => {
   const answerHandler = (answer: string | null, index: number | null) => {
     setDisableButton(true);
     if (answer || index == null) {
-      setCurrentQuestion(currentQuestion + 1);
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
-    if (currentQuestion < length) {
+    if (currentQuestionIndex < length) {
       setDisableButton(true);
       if (answer === question.correct_answer) {
         setAnswerIndex(index);
         setShowBadge(true);
 
         setScore(score + 1);
-        setCurrentQuestion(currentQuestion + 1);
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
         setCorrectAnswer(question.correct_answer);
-        setCurrentQuestion(currentQuestion + 1);
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
         setShowBadge(false);
       }
     } else {
@@ -65,16 +65,16 @@ const Questions = ({ data, category }: Props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (currentQuestion < length) {
-        setQuestion(getChoices(data[currentQuestion - 1]));
+      if (currentQuestionIndex < length) {
+        setQuestion(getChoices(data[currentQuestionIndex - 1]));
         setAnswerIndex(null);
         setDisableButton(false);
         setShowBadge(false);
         setSeconds(30);
-        console.log(currentQuestion + " on next");
+        console.log(currentQuestionIndex + " on next");
       } else setEnd(true);
     }, 1500);
-  }, [currentQuestion]);
+  }, [currentQuestionIndex]);
 
   if (end) return <ResultBoard category={category} score={score} />;
   if (isLoading) return <LoadingLayout />;
@@ -83,47 +83,13 @@ const Questions = ({ data, category }: Props) => {
     <>
       <QuestionHeader score={score} showBadge={showBadge} seconds={seconds} />
 
-      <VStack>
-        <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
-          {question.question}
-        </Box>
-
-        <SimpleGrid
-          columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
-          spacing={10}
-          paddingX="20"
-          paddingY="5"
-          justifyContent="space-around"
-        >
-          {question.answers.map((answer: string, index: number) => (
-            <Button
-              isDisabled={
-                answer == correctanswer || answerIndex == index
-                  ? false
-                  : disableButton
-              }
-              onClick={() => answerHandler(answer, index)}
-              fontSize="2xl"
-              padding="12"
-              width="700px"
-              whiteSpace="normal"
-              maxWidth="100%"
-              value={answer}
-              key={answer}
-              variant={"solid"}
-              colorScheme={
-                answerIndex == index
-                  ? "green"
-                  : answer == correctanswer
-                  ? "pink"
-                  : "gray"
-              }
-            >
-              {answer}
-            </Button>
-          ))}
-        </SimpleGrid>
-      </VStack>
+      <QuizArea
+        question={question}
+        correctanswer={correctanswer}
+        disableButton={disableButton}
+        answerIndex={answerIndex}
+        answerHandler={answerHandler}
+      />
     </>
   );
 };
