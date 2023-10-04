@@ -21,6 +21,8 @@ const Questions = ({ data, category }: Props) => {
   const [seconds, setSeconds] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [disableButton, setDisableButton] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
   var timer: any;
   useEffect(() => {
     setTimeout(() => {
@@ -41,27 +43,33 @@ const Questions = ({ data, category }: Props) => {
   });
 
   const answerHandler = (answer: string | null, index: number | null) => {
-    setDisableButton(true);
-    if (answer || index == null) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setAnswerIndex(null);
-    }
-    if (currentQuestionIndex < length) {
+    if (!isButtonClicked) {
+      setIsButtonClicked(true);
       setDisableButton(true);
-      if (answer === question.correct_answer) {
-        setAnswerIndex(index);
-        setShowBadge(true);
-
-        setScore(score + 1);
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        setCorrectAnswer(question.correct_answer);
+      if (answer || index == null) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setAnswerIndex(null);
-        setShowBadge(false);
       }
-    } else {
-      setEnd(true);
+      if (currentQuestionIndex < length) {
+        setDisableButton(true);
+        if (answer === question.correct_answer) {
+          setAnswerIndex(index);
+          setShowBadge(true);
+
+          setScore(score + 1);
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+          setCorrectAnswer(question.correct_answer);
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setAnswerIndex(null);
+          setShowBadge(false);
+        }
+      } else {
+        setEnd(true);
+      }
+      setTimeout(() => {
+        setIsButtonClicked(false);
+      }, 2500);
     }
   };
 
