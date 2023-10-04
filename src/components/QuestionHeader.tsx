@@ -1,20 +1,41 @@
-import { Box, HStack } from "@chakra-ui/react";
-import React from "react";
+import { Badge, Box, HStack, Text } from "@chakra-ui/react";
+import { BsFillStopwatchFill } from "react-icons/bs";
 interface Props {
-  children: any;
+  score: number;
+  seconds: number;
+  showBadge: boolean;
 }
-const QuestionHeader = ({ children }: Props) => {
+const QuestionHeader = ({ score, showBadge, seconds }: Props) => {
   return (
-    <HStack
-      // bg="brown"
-      w="100%"
-      p={8}
-      fontSize="5xl"
-      color="whiteAlpha.800"
-      justifyContent="space-around"
-    >
-      {children}
-    </HStack>
+    <>
+      <HStack
+        w="100%"
+        p={8}
+        fontSize="5xl"
+        color="whiteAlpha.800"
+        justifyContent="space-around"
+      >
+        <Box>
+          Score : {score}{" "}
+          {showBadge ? (
+            <Badge variant="outline" colorScheme="green" fontSize="xl">
+              +1 points
+            </Badge>
+          ) : (
+            ""
+          )}
+        </Box>
+
+        <HStack
+          display="flex"
+          justifyContent="center"
+          bg="transparent"
+          alignItems="center"
+        >
+          <BsFillStopwatchFill color="orange" /> <Text>{seconds}</Text>
+        </HStack>
+      </HStack>
+    </>
   );
 };
 

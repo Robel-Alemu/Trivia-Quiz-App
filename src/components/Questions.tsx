@@ -1,19 +1,10 @@
-import {
-  Badge,
-  Box,
-  Button,
-  HStack,
-  SimpleGrid,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, VStack } from "@chakra-ui/react";
 import { Question } from "../hooks/useQuestions";
 import getChoices from "../utils/getQuestion";
 import { useEffect, useState } from "react";
 import ResultBoard from "./ResultBoard";
 import QuestionHeader from "./QuestionHeader";
 import LoadingLayout from "./LoadingLayout";
-import { BsFillStopwatchFill } from "react-icons/bs";
 interface Props {
   data: Question[];
   category: number;
@@ -79,9 +70,7 @@ const Questions = ({ data, category }: Props) => {
         setAnswerIndex(null);
         setDisableButton(false);
         setShowBadge(false);
-
         setSeconds(30);
-
         console.log(currentQuestion + " on next");
       } else setEnd(true);
     }, 1500);
@@ -92,39 +81,13 @@ const Questions = ({ data, category }: Props) => {
 
   return (
     <>
-      <QuestionHeader>
-        <Box>
-          Score : {score}{" "}
-          {showBadge ? (
-            <Badge variant="outline" colorScheme="green" fontSize="xl">
-              +1 points
-            </Badge>
-          ) : (
-            ""
-          )}
-        </Box>
-
-        <HStack
-          display="flex"
-          justifyContent="center"
-          bg="transparent"
-          alignItems="center"
-        >
-          <BsFillStopwatchFill color="orange" /> <Text>{seconds}</Text>
-        </HStack>
-      </QuestionHeader>
+      <QuestionHeader score={score} showBadge={showBadge} seconds={seconds} />
 
       <VStack>
         <Box textAlign="center" w="100%" p={8} fontSize="3xl" color="white">
           {question.question}
         </Box>
-        {/* {showBadge ? (
-          <Badge variant="outline" colorScheme="green" fontSize="xl">
-            +1 points
-          </Badge>
-        ) : (
-          ""
-        )} */}
+
         <SimpleGrid
           columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
           spacing={10}
@@ -155,24 +118,12 @@ const Questions = ({ data, category }: Props) => {
                   ? "pink"
                   : "gray"
               }
-              // bg={
-              //   answerIndex == index
-              //     ? "green"
-              //     : answer == correctanswer
-              //     ? "red"
-              //     : "gray"
-              // }
             >
               {answer}
             </Button>
           ))}
         </SimpleGrid>
       </VStack>
-
-      {/* <QuestionFooter>
-        <Box>Score: {score}</Box>
-        <Box>Timer: {seconds}</Box>
-      </QuestionFooter> */}
     </>
   );
 };
