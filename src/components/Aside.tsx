@@ -1,12 +1,16 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import { Img, VStack } from "@chakra-ui/react";
+import welcome from "../assets/welcome3.gif";
 
 const Aside = () => {
   return (
-    <VStack marginY="40%">
-      <Heading fontSize="5xl">Welcome </Heading>
-      <Heading fontSize="1xl">
-        Knowledge is power, and trivia is its playground.
-      </Heading>
+    <VStack marginTop={40}>
+      <Img
+        marginTop="15%"
+        borderRadius={20}
+        src={welcome}
+        width="300px"
+        height="300px"
+      />
     </VStack>
   );
 };
